@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inven'tif Coiffure et Esthétique — Salon à Le Havre (gare)</title>
+<meta name="description" content="Inven'tif Coiffure et Esthétique, 75 Rue Casimir Delavigne au Havre. Coiffure femme, homme, enfant et institut de beauté (soins, épilation, manucure, massage) dans un seul salon. Réservation en ligne en direct. Note Google 4,8/5.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["HairSalon", "BeautySalon"],
+  "name": "Inven'tif Coiffure et Esthétique",
+  "image": "https://inventif-coiffure.netlify.app/images/facade.jpg",
+  "telephone": "+33235210588",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "75 Rue Casimir Delavigne",
+    "addressLocality": "Le Havre",
+    "postalCode": "76600",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.4952586,
+    "longitude": 0.1223936
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "58"
+  },
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"14:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"13:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"09:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"17:30"}
+  ]
+}
+</script>
+<style>
+  :root{
+    --rose:#c98f86;
+    --rose-deep:#a9695f;
+    --rose-pale:#f2ded9;
+    --teal:#2f9e93;
+    --teal-deep:#1f7168;
+    --teal-pale:#dcf0ec;
+    --cream:#faf5ef;
+    --cream-2:#f2ece2;
+    --ink:#2b2521;
+    --ink-soft:#6b5f54;
+    --line:#e4d9cb;
+    --shadow: 0 20px 50px -20px rgba(43,37,33,0.25);
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Manrope',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-size:12.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--rose-deep); font-weight:700; margin:0 0 10px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; border-radius:100px; border:none;
+    font-family:'Manrope',sans-serif; font-weight:700; font-size:15px;
+    cursor:pointer; text-decoration:none; transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+    position:relative; overflow:hidden;
+  }
+  .btn-primary{ background:var(--ink); color:#fff; }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(43,37,33,.45); }
+  .btn-outline{ background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
+  .btn-outline:hover{ transform:translateY(-3px); background:var(--ink); color:#fff; }
+  .btn-light{ background:#fff; color:var(--ink); }
+  .btn-light:hover{ transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(0,0,0,.35); }
+
+  /* ---------- Cookie banner ---------- */
+  #cookie-banner{
+    position:fixed; left:20px; right:20px; bottom:20px; z-index:999;
+    background:var(--ink); color:#fdf9f4; padding:18px 22px; border-radius:16px;
+    display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between;
+    box-shadow:var(--shadow); max-width:720px; margin:0 auto; transform:translateY(140%);
+    transition:transform .6s var(--ease);
+  }
+  #cookie-banner.show{ transform:translateY(0); }
+  #cookie-banner p{ margin:0; font-size:13.5px; line-height:1.5; color:#e9ddd0; flex:1; min-width:220px; }
+  #cookie-banner .cookie-actions{ display:flex; gap:10px; flex-shrink:0; }
+  #cookie-banner button{
+    border:none; border-radius:100px; padding:10px 18px; font-weight:700; font-size:13px; cursor:pointer; font-family:'Manrope',sans-serif;
+  }
+  #cookie-accept{ background:var(--teal); color:#fff; }
+  #cookie-decline{ background:transparent; color:#e9ddd0; border:1px solid rgba(255,255,255,.3) !important; }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(250,245,239,.85); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  .logo{ font-family:'Fraunces',serif; font-size:24px; font-weight:600; letter-spacing:-.01em; }
+  .logo span{ color:var(--teal-deep); font-style:italic; }
+  .nav-links{ display:flex; gap:30px; list-style:none; margin:0; padding:0; }
+  .nav-links a{ text-decoration:none; font-size:14px; font-weight:600; color:var(--ink-soft); transition:color .25s; }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .tel-link{ display:none; font-size:14px; font-weight:700; text-decoration:none; color:var(--ink); }
+  .status-pill{
+    display:flex; align-items:center; gap:9px; background:#fff; border:1px solid var(--line);
+    padding:9px 16px 9px 12px; border-radius:100px; cursor:pointer; font-size:13px; font-weight:700;
+    transition:box-shadow .3s, transform .3s;
+  }
+  .status-pill:hover{ box-shadow:var(--shadow); transform:translateY(-2px); }
+  .status-dot{ width:9px; height:9px; border-radius:50%; background:#c0392b; flex-shrink:0; transition:background .3s; }
+  .status-dot.open{ background:var(--teal); box-shadow:0 0 0 3px var(--teal-pale); }
+  .burger{ display:none; }
+
+  @media (min-width:900px){ .tel-link{ display:inline; } }
+  @media (max-width:900px){
+    .nav-links{
+      position:fixed; inset:66px 0 0 0; background:var(--cream); flex-direction:column; padding:30px 28px;
+      transform:translateX(100%); transition:transform .4s var(--ease); gap:22px; z-index:90;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:20px; }
+    .burger{ display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:#fff; cursor:pointer; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; min-height:92vh; display:flex; align-items:flex-end; overflow:hidden; }
+  .hero-bg{ position:absolute; inset:0; }
+  .hero-bg img{ width:100%; height:100%; object-fit:cover; }
+  .hero-bg::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(43,37,33,.15) 0%, rgba(43,37,33,.35) 55%, rgba(20,17,15,.88) 100%);
+  }
+  .hero-inner{ position:relative; z-index:2; width:100%; padding:0 28px 64px; color:#fff; }
+  .hero-content{ max-width:1180px; margin:0 auto; }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(6px);
+    padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px;
+  }
+  #hero-title{
+    font-size:clamp(40px, 7vw, 84px); line-height:1.02; font-weight:500; margin:0 0 22px; max-width:900px;
+    min-height:1.1em;
+  }
+  #hero-title em{ font-style:italic; color:var(--teal); }
+  .hero-sub{ font-size:17px; max-width:520px; color:#ece2d6; line-height:1.6; margin:0 0 34px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:46px; }
+  .hero-stats{ display:flex; flex-wrap:wrap; gap:38px; border-top:1px solid rgba(255,255,255,.22); padding-top:26px; }
+  .hero-stat b{ display:block; font-family:'Fraunces',serif; font-size:26px; font-weight:600; }
+  .hero-stat span{ font-size:12.5px; color:#d8ccbe; text-transform:uppercase; letter-spacing:.06em; }
+
+  /* ---------- Section shells ---------- */
+  section{ padding:110px 0; }
+  .section-head{ max-width:640px; margin:0 0 56px; }
+  .section-head h2{ font-size:clamp(30px,4vw,46px); font-weight:500; margin:0 0 16px; line-height:1.1; }
+  .section-head p{ color:var(--ink-soft); font-size:16px; line-height:1.65; margin:0; }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  /* ---------- Univers toggle ---------- */
+  .universes{ background:var(--cream-2); position:relative; }
+  .universes-head{ text-align:center; max-width:680px; margin:0 auto 50px; }
+  .toggle{
+    position:relative; display:inline-flex; background:#fff; border-radius:100px; padding:6px;
+    box-shadow:var(--shadow); margin-top:24px;
+  }
+  .toggle-btn{
+    position:relative; z-index:2; border:none; background:transparent; padding:13px 32px; border-radius:100px;
+    font-family:'Manrope',sans-serif; font-weight:700; font-size:14.5px; cursor:pointer; color:var(--ink-soft);
+    transition:color .4s; display:flex; align-items:center; gap:8px;
+  }
+  .toggle-btn.active{ color:#fff; }
+  .toggle-thumb{
+    position:absolute; top:6px; left:6px; height:calc(100% - 12px); width:calc(50% - 6px);
+    background:var(--ink); border-radius:100px; transition:transform .45s var(--ease), background .45s var(--ease); z-index:1;
+  }
+  .universes.mode-institut .toggle-thumb{ transform:translateX(100%); background:var(--teal-deep); }
+
+  .universe-panel{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; opacity:0; transform:translateY(18px);
+    transition:opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .universe-panel.active{ opacity:1; transform:translateY(0); }
+  .universe-media{ position:relative; border-radius:24px; overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5; }
+  .universe-media img{ width:100%; height:100%; object-fit:cover; }
+  .universe-media .tag{
+    position:absolute; bottom:20px; left:20px; background:rgba(255,255,255,.92); backdrop-filter:blur(6px);
+    padding:10px 18px; border-radius:100px; font-size:13px; font-weight:700;
+  }
+  .universe-list{ list-style:none; margin:26px 0 32px; padding:0; }
+  .universe-list li{
+    display:flex; justify-content:space-between; gap:16px; padding:15px 0; border-bottom:1px solid var(--line); font-size:15.5px;
+  }
+  .universe-list li b{ font-weight:700; }
+  .universe-list li span{ color:var(--ink-soft); font-weight:600; white-space:nowrap; }
+  @media (max-width:820px){ .universe-panel{ grid-template-columns:1fr; gap:32px; } }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:190px; gap:14px;
+  }
+  .gallery-item{
+    position:relative; overflow:hidden; border-radius:18px; cursor:default;
+  }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .gallery-item:hover img{ transform:scale(1.09); }
+  .gallery-item.tall{ grid-row:span 2; }
+  .gallery-caption{
+    position:absolute; inset:auto 0 0 0; padding:22px 18px 16px; color:#fff;
+    background:linear-gradient(0deg, rgba(20,17,15,.82), transparent);
+    clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
+    transition:clip-path .55s var(--ease);
+  }
+  .gallery-item:hover .gallery-caption{ clip-path:polygon(0 0,100% 0,100% 100%,0 100%); }
+  .gallery-caption b{ display:block; font-family:'Fraunces',serif; font-size:16.5px; font-weight:500; }
+  .gallery-caption span{ font-size:12px; color:#e3d7c8; }
+  @media (max-width:900px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- Carte / accordion ---------- */
+  .menu{ background:var(--ink); color:#f6efe6; }
+  .menu .section-head h2{ color:#fff; }
+  .menu .section-head p{ color:#cdbfae; }
+  .accordion-item{ border-top:1px solid rgba(255,255,255,.14); }
+  .accordion-item:last-child{ border-bottom:1px solid rgba(255,255,255,.14); }
+  .accordion-head{
+    display:flex; align-items:center; justify-content:space-between; padding:26px 4px; cursor:pointer; gap:20px;
+  }
+  .accordion-head h3{ margin:0; font-size:20px; font-weight:500; }
+  .accordion-head .count{ font-size:13px; color:#a99b89; font-weight:600; }
+  .accordion-plus{
+    width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.3); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; position:relative; transition:transform .4s var(--ease), background .4s;
+  }
+  .accordion-plus::before,.accordion-plus::after{
+    content:''; position:absolute; background:#fff; transition:transform .4s var(--ease);
+  }
+  .accordion-plus::before{ width:12px; height:1.5px; }
+  .accordion-plus::after{ width:1.5px; height:12px; }
+  .accordion-item.open .accordion-plus{ transform:rotate(135deg); background:var(--teal); border-color:var(--teal); }
+  .accordion-body{ max-height:0; overflow:hidden; transition:max-height .5s var(--ease); }
+  .accordion-item.open .accordion-body{ max-height:600px; }
+  .menu-list{ list-style:none; margin:0; padding:0 4px 30px; display:grid; gap:14px; }
+  .menu-list li{ display:flex; justify-content:space-between; gap:20px; font-size:15px; color:#e6dbcc; }
+  .menu-list li .dots{ flex:1; border-bottom:1px dotted rgba(255,255,255,.25); margin-bottom:6px; }
+  .menu-list li b{ color:#fff; font-weight:700; white-space:nowrap; }
+  .menu-note{ margin:36px 4px 0; font-size:13.5px; color:#a99b89; }
+
+  /* ---------- Réservation ---------- */
+  .booking{ background:var(--cream-2); }
+  .booking-card{
+    background:#fff; border-radius:28px; box-shadow:var(--shadow); padding:48px; display:grid; grid-template-columns:1fr 1.3fr; gap:50px;
+  }
+  .booking-info h2{ font-size:32px; font-weight:500; margin:0 0 14px; }
+  .booking-info p{ color:var(--ink-soft); font-size:15px; line-height:1.65; }
+  .booking-hours{ margin-top:28px; list-style:none; padding:0; }
+  .booking-hours li{ display:flex; justify-content:space-between; font-size:13.5px; padding:8px 0; border-bottom:1px solid var(--line); }
+  .booking-hours li.today{ font-weight:800; color:var(--teal-deep); }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:8px; }
+  .field input, .field select{
+    width:100%; padding:14px 16px; border-radius:12px; border:1.5px solid var(--line); font-family:'Manrope',sans-serif; font-size:15px; background:#fdfaf6;
+    transition:border-color .25s;
+  }
+  .field input:focus, .field select:focus{ outline:none; border-color:var(--teal); }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  #slots-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:6px; }
+  .slot-btn{
+    padding:11px 6px; border-radius:10px; border:1.5px solid var(--line); background:#fdfaf6; font-weight:700; font-size:13.5px;
+    cursor:pointer; transition:all .25s;
+  }
+  .slot-btn:hover{ border-color:var(--teal); }
+  .slot-btn.selected{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  .slot-empty{ font-size:13.5px; color:var(--ink-soft); grid-column:1/-1; padding:12px 0; }
+  #booking-msg{ margin-top:16px; font-size:14px; font-weight:700; min-height:20px; }
+  #booking-msg.ok{ color:var(--teal-deep); }
+  #booking-msg.err{ color:#b23b2e; }
+  @media (max-width:900px){ .booking-card{ grid-template-columns:1fr; padding:30px; } #slots-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  /* ---------- Avis ---------- */
+  .reviews{ text-align:center; }
+  .review-badges{ display:flex; flex-wrap:wrap; justify-content:center; gap:22px; margin-top:10px; }
+  .review-badge{
+    background:#fff; border:1px solid var(--line); border-radius:22px; padding:34px 46px; min-width:220px; box-shadow:var(--shadow);
+  }
+  .review-badge .stars{ color:var(--rose-deep); font-size:20px; letter-spacing:2px; margin-bottom:10px; }
+  .review-badge b{ display:block; font-family:'Fraunces',serif; font-size:36px; font-weight:600; }
+  .review-badge span{ font-size:13px; color:var(--ink-soft); font-weight:600; }
+
+  /* ---------- Accès ---------- */
+  .access{ display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .access-info{ padding:110px 60px; }
+  .access-info .section-head{ margin-bottom:36px; }
+  .access-list{ list-style:none; padding:0; margin:0; display:grid; gap:22px; }
+  .access-list li{ display:flex; gap:16px; align-items:flex-start; }
+  .access-ico{
+    width:42px; height:42px; border-radius:50%; background:var(--teal-pale); color:var(--teal-deep); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  .access-list h4{ margin:0 0 4px; font-size:15.5px; }
+  .access-list p{ margin:0; color:var(--ink-soft); font-size:14.5px; }
+  .access-map iframe{ width:100%; height:100%; min-height:480px; border:0; filter:saturate(.85) contrast(1.02); }
+  @media (max-width:900px){ .access{ grid-template-columns:1fr; } .access-info{ padding:70px 28px; } .access-map iframe{ min-height:340px; } }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--ink); color:#cdbfae; padding:60px 0 30px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.12); }
+  .footer-logo{ font-family:'Fraunces',serif; font-size:24px; color:#fff; margin-bottom:10px; }
+  .footer-col h5{ color:#fff; font-size:13px; letter-spacing:.08em; text-transform:uppercase; margin:0 0 16px; }
+  .footer-col a{ display:block; color:#cdbfae; text-decoration:none; font-size:14px; margin-bottom:10px; }
+  .footer-col a:hover{ color:#fff; }
+  .footer-bottom{ padding-top:26px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:12.5px; color:#a99b89; }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:640px){
+    section{ padding:74px 0; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:160px; }
+    .review-badges{ gap:14px; }
+    .review-badge{ padding:26px 30px; min-width:150px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cookie-banner">
+  <p>Ce site utilise un cookie technique pour mémoriser vos préférences d'affichage. Aucune donnée n'est revendue.</p>
+  <div class="cookie-actions">
+    <button id="cookie-decline">Refuser</button>
+    <button id="cookie-accept">Accepter</button>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Inven<span>'</span>tif</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#univers">Univers</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#carte">Prestations</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#acces">Accès</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="tel-link" href="tel:0235210588">02 35 21 05 88</a>
+      <button class="status-pill" id="status-pill" onclick="document.getElementById('reserver').scrollIntoView({behavior:'smooth'})">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Horaires…</span>
+      </button>
+      <button class="burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="images/facade.jpg" alt="Devanture du salon Inven'tif Coiffure et Esthétique, 75 Rue Casimir Delavigne, Le Havre"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Quartier de la gare · Le Havre</span>
+      <h1 id="hero-title" data-text="Coiffure & institut, sous un même toit."><em>Coiffure</em> & institut, sous un même toit.</h1>
+      <p class="hero-sub">Sophie et Laetitia prennent soin de vos cheveux, Sandrine de votre peau et de votre bien-être. Un seul salon, deux savoir-faire, à deux pas de la gare du Havre.</p>
+      <div class="hero-ctas">
+        <a href="#reserver" class="btn btn-primary">Réserver en ligne</a>
+        <a href="#univers" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.5);">Découvrir les 2 univers</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>4,8★</b><span>Google · 58 avis</span></div>
+        <div class="hero-stat"><b>4,9★</b><span>Planity · 320 avis</span></div>
+        <div class="hero-stat"><b>2</b><span>Univers, 1 salon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="universes" id="univers">
+  <div class="wrap">
+    <div class="universes-head reveal">
+      <p class="eyebrow">Deux univers, un seul salon</p>
+      <h2>Choisissez votre côté du miroir</h2>
+      <p style="color:var(--ink-soft);font-size:16px;">D'un côté, le fauteuil du coiffeur. De l'autre, la table de soin. Basculez pour découvrir chaque univers.</p>
+      <div class="toggle" id="universe-toggle">
+        <span class="toggle-thumb"></span>
+        <button class="toggle-btn active" data-target="coiffure">✂️ Coiffure</button>
+        <button class="toggle-btn" data-target="institut">✨ Institut</button>
+      </div>
+    </div>
+
+    <div class="universe-panel active" data-panel="coiffure">
+      <div class="universe-media">
+        <img src="images/salon-1.jpg" alt="Espace coiffure du salon Inven'tif, bacs de shampoing et fauteuils">
+        <span class="tag">Sophie & Laetitia</span>
+      </div>
+      <div>
+        <p class="eyebrow">L'univers coiffure</p>
+        <h3 class="serif" style="font-size:28px;font-weight:500;margin:0 0 14px;">Coupe, couleur, technique</h3>
+        <p style="color:var(--ink-soft);font-size:15.5px;line-height:1.6;">Brushing, coupes femme, homme et enfant, colorations, balayages, mèches et permanentes : Sophie et Laetitia s'occupent de votre chevelure du diagnostic jusqu'au brushing final.</p>
+        <ul class="universe-list">
+          <li><b>Coupe + brushing femme (courts)</b><span>dès 35 €</span></li>
+          <li><b>Coupe + coiffage homme</b><span>20 €</span></li>
+          <li><b>Balayage + coupe + brushing</b><span>dès 69 €</span></li>
+          <li><b>Coupe enfant (6-11 ans)</b><span>dès 15 €</span></li>
+        </ul>
+        <a href="#carte" class="btn btn-outline">Voir toute la carte coiffure</a>
+      </div>
+    </div>
+
+    <div class="universe-panel" data-panel="institut" hidden>
+      <div class="universe-media">
+        <img src="images/institut-1.jpg" alt="Cabine de soin de l'institut de beauté Inven'tif">
+        <span class="tag">Sandrine</span>
+      </div>
+      <div>
+        <p class="eyebrow">L'univers institut</p>
+        <h3 class="serif" style="font-size:28px;font-weight:500;margin:0 0 14px;">Soin, beauté, bien-être</h3>
+        <p style="color:var(--ink-soft);font-size:15.5px;line-height:1.6;">Épilation, soins du visage, manucure, maquillage et modelages du corps : Sandrine veille sur votre peau et sur vos instants de détente, dans un espace pensé pour ça.</p>
+        <ul class="universe-list">
+          <li><b>Soin visage classique</b><span>dès 40 €</span></li>
+          <li><b>Massage dos</b><span>dès 30 €</span></li>
+          <li><b>Manucure + semi-permanent</b><span>44 €</span></li>
+          <li><b>Épilation sourcils</b><span>9 €</span></li>
+        </ul>
+        <a href="#carte" class="btn btn-outline">Voir toute la carte institut</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galerie">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Galerie</p>
+      <h2>Un aperçu du salon</h2>
+      <p>Les deux espaces, tels qu'ils sont — pas de mise en scène, juste le salon.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item tall">
+        <img src="images/salon-2.jpg" alt="Entrée du salon, vue vers la vitrine">
+        <div class="gallery-caption"><b>L'entrée</b><span>Vue sur la rue Casimir Delavigne</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/institut-2.jpg" alt="Cabine institut, ambiance claire">
+        <div class="gallery-caption"><b>Cabine institut</b><span>Soins du visage & du corps</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/produits.jpg" alt="Gamme de produits L'Oréal Professionnel">
+        <div class="gallery-caption"><b>Produits professionnels</b><span>Gamme L'Oréal Professionnel</span></div>
+      </div>
+      <div class="gallery-item tall">
+        <img src="images/salon-3.jpg" alt="Poste de coiffage, murs verts">
+        <div class="gallery-caption"><b>Poste coiffage</b><span>Diagnostic & conseils personnalisés</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/salon-4.jpg" alt="Second poste de coiffage">
+        <div class="gallery-caption"><b>Deux postes</b><span>Sophie & Laetitia</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/boutique.jpg" alt="Espace boutique, sacs et accessoires">
+        <div class="gallery-caption"><b>Coin boutique</b><span>Bijoux, sacs & accessoires</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="carte">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--teal);">La carte</p>
+      <h2>Prestations & tarifs</h2>
+      <p>Un extrait de la carte complète — la totalité des prestations (plus de 100 références) est consultable en salon ou lors de la réservation en ligne.</p>
+    </div>
+
+    <div class="accordion reveal">
+      <div class="accordion-item open">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Coiffure Femme</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Shampooing + coupe + brushing — cheveux courts</span><div class="dots"></div><b>35 €</b></li>
+            <li><span>Shampooing + coupe + brushing — mi-longs</span><div class="dots"></div><b>41 €</b></li>
+            <li><span>Shampooing + coupe + brushing — longs</span><div class="dots"></div><b>46 €</b></li>
+            <li><span>Shampooing + brushing — courts</span><div class="dots"></div><b>22 €</b></li>
+            <li><span>Chignon travaillé</span><div class="dots"></div><b>dès 35 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Coiffure Homme</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Coupe + coiffage</span><div class="dots"></div><b>20 €</b></li>
+            <li><span>Shampooing + coupe + coiffage</span><div class="dots"></div><b>22 €</b></li>
+            <li><span>Léger taillage de barbe</span><div class="dots"></div><b>dès 7 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Enfants</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>0 à 2 ans</span><div class="dots"></div><b>dès 10 €</b></li>
+            <li><span>3 à 5 ans</span><div class="dots"></div><b>dès 12 €</b></li>
+            <li><span>6 à 11 ans (sans shampoing)</span><div class="dots"></div><b>dès 15 €</b></li>
+            <li><span>Adolescent (sans shampoing)</span><div class="dots"></div><b>dès 20 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Couleur & technique</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Coloration racine + coupe + brushing (court)</span><div class="dots"></div><b>dès 68 €</b></li>
+            <li><span>Balayage + coupe + brushing (très court)</span><div class="dots"></div><b>dès 69 €</b></li>
+            <li><span>Mèches + coupe + brushing (court)</span><div class="dots"></div><b>dès 73 €</b></li>
+            <li><span>Permanente demi-tête + brushing (courts)</span><div class="dots"></div><b>dès 55 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Institut — Visage & corps</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Soin visage classique</span><div class="dots"></div><b>dès 40 €</b></li>
+            <li><span>Soin visage avec vapozone</span><div class="dots"></div><b>dès 50 €</b></li>
+            <li><span>Massage dos (30 min)</span><div class="dots"></div><b>dès 30 €</b></li>
+            <li><span>Soin complet corps (gommage + modelage)</span><div class="dots"></div><b>62 €</b></li>
+            <li><span>Massage pierre chaude</span><div class="dots"></div><b>dès 40 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Institut — Épilation & maquillage</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Sourcils</span><div class="dots"></div><b>9 €</b></li>
+            <li><span>Lèvre</span><div class="dots"></div><b>6 €</b></li>
+            <li><span>1/2 jambes</span><div class="dots"></div><b>16 €</b></li>
+            <li><span>Maquillage jour</span><div class="dots"></div><b>21 €</b></li>
+            <li><span>Maquillage mariée (avec essai)</span><div class="dots"></div><b>40 €</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          <h3>Institut — Mains & pieds</h3>
+          <span class="accordion-plus"></span>
+        </div>
+        <div class="accordion-body">
+          <ul class="menu-list">
+            <li><span>Manucure simple</span><div class="dots"></div><b>21 €</b></li>
+            <li><span>Vernis semi-permanent (mains)</span><div class="dots"></div><b>dès 31 €</b></li>
+            <li><span>Manucure + semi-permanent</span><div class="dots"></div><b>44 €</b></li>
+            <li><span>Soin des pieds</span><div class="dots"></div><b>dès 25 €</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">Tarifs indicatifs relevés sur la carte de réservation en ligne du salon (Planity), susceptibles de varier selon la longueur/épaisseur des cheveux. Prix confirmé en cabine.</p>
+  </div>
+</section>
+
+<section class="booking" id="reserver">
+  <div class="wrap">
+    <div class="booking-card reveal">
+      <div class="booking-info">
+        <p class="eyebrow">Réservation en direct</p>
+        <h2>Prenez rendez-vous</h2>
+        <p>Choisissez une date, un créneau encore libre, et confirmez — le créneau est bloqué immédiatement, sans double réservation possible.</p>
+        <ul class="booking-hours" id="booking-hours"></ul>
+      </div>
+      <div class="booking-form">
+        <div class="row2">
+          <div class="field">
+            <label for="bk-date">Date</label>
+            <input type="date" id="bk-date">
+          </div>
+          <div class="field">
+            <label for="bk-service">Prestation</label>
+            <select id="bk-service">
+              <option>Coupe + brushing femme</option>
+              <option>Coupe + coiffage homme</option>
+              <option>Coupe enfant</option>
+              <option>Couleur / balayage</option>
+              <option>Soin visage</option>
+              <option>Manucure</option>
+              <option>Épilation</option>
+              <option>Massage</option>
+              <option>Autre / à préciser au salon</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Créneaux disponibles</label>
+          <div id="slots-grid"><span class="slot-empty">Choisissez d'abord une date.</span></div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="bk-name">Nom</label>
+            <input type="text" id="bk-name" placeholder="Votre nom">
+          </div>
+          <div class="field">
+            <label for="bk-phone">Téléphone</label>
+            <input type="tel" id="bk-phone" placeholder="06 12 34 56 78">
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="submitBooking()">Confirmer le rendez-vous</button>
+        <p id="booking-msg"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="avis">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Avis clients</p>
+      <h2>Ce que montrent les avis</h2>
+      <p>Aucun avis inventé ici — uniquement les notes publiques, telles qu'elles apparaissent aujourd'hui.</p>
+    </div>
+    <div class="review-badges reveal">
+      <div class="review-badge">
+        <div class="stars">★★★★★</div>
+        <b>4,8 / 5</b>
+        <span>Google — 58 avis</span>
+      </div>
+      <div class="review-badge">
+        <div class="stars">★★★★★</div>
+        <b>4,9 / 5</b>
+        <span>Planity — 320 avis</span>
+      </div>
+      <div class="review-badge">
+        <div class="stars">★★★★★</div>
+        <b>5,0 / 5</b>
+        <span>Accueil (Planity)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="access" id="acces">
+  <div class="access-info">
+    <div class="section-head reveal">
+      <p class="eyebrow">Accès</p>
+      <h2>Nous trouver</h2>
+      <p>À deux pas de la gare du Havre, sur la rue Casimir Delavigne.</p>
+    </div>
+    <ul class="access-list reveal">
+      <li>
+        <div class="access-ico">📍</div>
+        <div><h4>Adresse</h4><p>75 Rue Casimir Delavigne, 76600 Le Havre</p></div>
+      </li>
+      <li>
+        <div class="access-ico">📞</div>
+        <div><h4>Téléphone</h4><p><a href="tel:0235210588">02 35 21 05 88</a></p></div>
+      </li>
+      <li>
+        <div class="access-ico">🚆</div>
+        <div><h4>Repère</h4><p>Quartier de la gare du Havre, à proximité immédiate</p></div>
+      </li>
+    </ul>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=75+Rue+Casimir+Delavigne,+76600+Le+Havre" target="_blank" rel="noopener" class="btn btn-outline reveal" style="margin-top:30px;">Itinéraire sur Google Maps</a>
+  </div>
+  <div class="access-map reveal">
+    <iframe src="https://www.google.com/maps?q=75+Rue+Casimir+Delavigne,76600+Le+Havre&output=embed" loading="lazy" allowfullscreen title="Carte — Inven'tif Coiffure et Esthétique"></iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Inven'tif</div>
+        <p style="max-width:260px;font-size:14px;color:#a99b89;">Coiffure et institut de beauté, 75 Rue Casimir Delavigne, 76600 Le Havre.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Salon</h5>
+        <a href="#univers">Univers</a>
+        <a href="#carte">Prestations</a>
+        <a href="#avis">Avis</a>
+        <a href="#acces">Accès</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:0235210588">02 35 21 05 88</a>
+        <a href="https://www.facebook.com/p/Inventif-coiffure-et-esth%C3%A9tique-100043104376122/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <div class="footer-col">
+        <h5>Informations</h5>
+        <a href="legal.html">Mentions légales</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Inven'tif Coiffure et Esthétique — Site de démonstration</span>
+      <span>Le Havre</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Cookie banner ---------- */
+(function(){
+  const banner = document.getElementById('cookie-banner');
+  if(!localStorage.getItem('inventif-cookie-choice')){
+    setTimeout(()=>banner.classList.add('show'), 900);
+  }
+  document.getElementById('cookie-accept').onclick = ()=>{ localStorage.setItem('inventif-cookie-choice','accepted'); banner.classList.remove('show'); };
+  document.getElementById('cookie-decline').onclick = ()=>{ localStorage.setItem('inventif-cookie-choice','declined'); banner.classList.remove('show'); };
+})();
+
+/* ---------- Mobile nav ---------- */
+document.getElementById('burger').addEventListener('click', ()=>{
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', ()=>{
+  document.getElementById('nav-links').classList.remove('open');
+}));
+
+/* ---------- Scramble hero text ---------- */
+function scrambleText(el, finalText, duration){
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const steps = 20;
+  let frame = 0;
+  const iv = setInterval(()=>{
+    frame++;
+    const progress = frame/steps;
+    el.innerHTML = finalText.split('').map((ch,i)=>{
+      if(ch === ' ') return ' ';
+      const revealAt = i/finalText.length;
+      if(progress > revealAt + 0.12) return ch;
+      return chars[Math.floor(Math.random()*chars.length)];
+    }).join('');
+    if(frame >= steps){
+      clearInterval(iv);
+      el.innerHTML = '<em>Coiffure</em> & institut, sous un même toit.';
+    }
+  }, duration/steps);
+}
+window.addEventListener('DOMContentLoaded', ()=>{
+  const h1 = document.getElementById('hero-title');
+  scrambleText(h1, h1.dataset.text, 1000);
+});
+
+/* ---------- Univers toggle ---------- */
+(function(){
+  const wrap = document.getElementById('universe-toggle');
+  const section = document.getElementById('univers');
+  const btns = wrap.querySelectorAll('.toggle-btn');
+  const panels = document.querySelectorAll('.universe-panel');
+  btns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(btn.classList.contains('active')) return;
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.target;
+      section.classList.toggle('mode-institut', target === 'institut');
+      panels.forEach(p=>{
+        if(p.dataset.panel === target){
+          p.hidden = false;
+          requestAnimationFrame(()=>requestAnimationFrame(()=>p.classList.add('active')));
+        } else {
+          p.classList.remove('active');
+          setTimeout(()=>{ p.hidden = true; }, 450);
+        }
+      });
+    });
+  });
+})();
+
+/* ---------- Accordion ---------- */
+function toggleAccordion(head){
+  const item = head.closest('.accordion-item');
+  const wasOpen = item.classList.contains('open');
+  item.parentElement.querySelectorAll('.accordion-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ---------- Scroll reveal ---------- */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+  });
+}, { threshold:.15 });
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ---------- Status pill (horaires réelles) ---------- */
+const HOURS = [
+  null,          // 0 Dimanche
+  [[14,18]],     // 1 Lundi
+  [[9,18]],      // 2 Mardi
+  [[9,13]],      // 3 Mercredi
+  [[9,18]],      // 4 Jeudi
+  [[9,18]],      // 5 Vendredi
+  [[9,17.5]],    // 6 Samedi
+];
+const DAY_NAMES = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+
+function fmtHour(h){
+  const hh = Math.floor(h);
+  const mm = Math.round((h - hh) * 60);
+  return mm === 0 ? `${hh}h` : `${hh}h${String(mm).padStart(2,'0')}`;
+}
+
+function updateStatus(){
+  const now = new Date();
+  const day = now.getDay();
+  const mins = now.getHours()*60 + now.getMinutes();
+  const dot = document.getElementById('status-dot');
+  const text = document.getElementById('status-text');
+  const ranges = HOURS[day];
+  let open = false, closeH = null, nextOpenLabel = null;
+
+  if(ranges){
+    for(const [oh,ch] of ranges){
+      if(mins >= oh*60 && mins < ch*60){ open = true; closeH = ch; break; }
+    }
+  }
+
+  if(open){
+    dot.classList.add('open');
+    text.textContent = `Ouvert · Ferme à ${fmtHour(closeH)}`;
+  } else {
+    dot.classList.remove('open');
+    // cherche la prochaine ouverture (aujourd'hui plus tard, ou jours suivants)
+    if(ranges){
+      const upcoming = ranges.find(([oh]) => oh*60 > mins);
+      if(upcoming){ nextOpenLabel = `Ouvre à ${fmtHour(upcoming[0])}`; }
+    }
+    if(!nextOpenLabel){
+      for(let i=1;i<=7;i++){
+        const d = (day + i) % 7;
+        if(HOURS[d]){
+          const label = i === 1 ? 'demain' : DAY_NAMES[d];
+          nextOpenLabel = `Ouvre ${label} à ${fmtHour(HOURS[d][0][0])}`;
+          break;
+        }
+      }
+    }
+    text.textContent = `Fermé · ${nextOpenLabel || ''}`;
+  }
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+/* ---------- Booking hours list ---------- */
+(function(){
+  const list = document.getElementById('booking-hours');
+  const labels = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const today = new Date().getDay();
+  let html = '';
+  for(let d=0; d<7; d++){
+    const r = HOURS[d];
+    const txt = r ? r.map(([a,b])=>`${fmtHour(a)} – ${fmtHour(b)}`).join(', ') : 'Fermé';
+    html += `<li class="${d===today?'today':''}"><span>${labels[d]}</span><span>${txt}</span></li>`;
+  }
+  list.innerHTML = html;
+})();
+
+/* ---------- Réservation en direct ---------- */
+let selectedSlot = null;
+const dateInput = document.getElementById('bk-date');
+const todayStr = new Date().toISOString().split('T')[0];
+dateInput.min = todayStr;
+dateInput.value = todayStr;
+
+async function loadSlots(){
+  const grid = document.getElementById('slots-grid');
+  selectedSlot = null;
+  const date = dateInput.value;
+  if(!date){ grid.innerHTML = '<span class="slot-empty">Choisissez d\'abord une date.</span>'; return; }
+  grid.innerHTML = '<span class="slot-empty">Chargement des créneaux…</span>';
+  try{
+    const res = await fetch(`/.netlify/functions/slots?date=${date}`);
+    const data = await res.json();
+    if(!data.slots || data.slots.length === 0){
+      grid.innerHTML = '<span class="slot-empty">Salon fermé ou complet ce jour-là. Essayez une autre date.</span>';
+      return;
+    }
+    grid.innerHTML = data.slots.map(s=>`<button class="slot-btn" data-slot="${s}">${s}</button>`).join('');
+    grid.querySelectorAll('.slot-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        grid.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSlot = btn.dataset.slot;
+      });
+    });
+  }catch(e){
+    grid.innerHTML = '<span class="slot-empty">Impossible de charger les créneaux pour le moment.</span>';
+  }
+}
+dateInput.addEventListener('change', loadSlots);
+loadSlots();
+
+async function submitBooking(){
+  const msg = document.getElementById('booking-msg');
+  const name = document.getElementById('bk-name').value.trim();
+  const phone = document.getElementById('bk-phone').value.trim();
+  const service = document.getElementById('bk-service').value;
+  const date = dateInput.value;
+
+  if(!date || !selectedSlot){ msg.className='err'; msg.textContent = 'Choisissez une date et un créneau.'; return; }
+  if(!name || !phone){ msg.className='err'; msg.textContent = 'Merci de renseigner votre nom et votre téléphone.'; return; }
+
+  msg.className=''; msg.textContent = 'Envoi en cours…';
+  try{
+    const res = await fetch('/.netlify/functions/slots', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ date, time:selectedSlot, name, phone, service })
+    });
+    const data = await res.json();
+    if(res.ok){
+      msg.className='ok'; msg.textContent = `Rendez-vous confirmé le ${date} à ${selectedSlot}. Le salon vous recontactera si besoin.`;
+      loadSlots();
+    } else {
+      msg.className='err'; msg.textContent = data.error || 'Une erreur est survenue.';
+    }
+  }catch(e){
+    msg.className='err'; msg.textContent = 'Impossible de contacter le serveur. Réessayez.';
+  }
+}
+</script>
+
+</body>
+</html>
